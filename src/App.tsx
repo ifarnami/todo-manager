@@ -1,11 +1,10 @@
-import { Button } from "antd";
 import AntdConfigProvider from "./provider/AntdConfigProvider";
+import Home from "./pages/Home/Home";
 
 const App = () => {
   return (
     <AntdConfigProvider>
-      <Button type="primary">Primary</Button>
-      <Button>Default</Button>
+      <Home />
     </AntdConfigProvider>
   );
 };
