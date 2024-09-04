@@ -13,7 +13,9 @@ export const useTodos = () => {
         const response = await axiosInstance.get<Todo[]>("todos");
         const todosWithStatus = response.data.map((todo) => ({
           ...todo,
-          status: "todo" as "todo" | "doing" | "done",
+          status: todo.completed
+            ? "done"
+            : ("todo" as "todo" | "doing" | "done"),
         }));
         setTodos(todosWithStatus);
       } catch (err) {
@@ -27,7 +29,7 @@ export const useTodos = () => {
     fetchTodos();
   }, []);
 
-  const addTodo = (title: string) => {
+  const addTodo = async (title: string) => {
     const newTodo: Todo = {
       id: todos.length + 1,
       title,
@@ -35,6 +37,13 @@ export const useTodos = () => {
       status: "todo",
     };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
+
+    // try {
+    //   const res = await axiosInstance.post("/todos", newTodo);
+    //   console.log(res);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   const changeStatus = (id: number, status: "todo" | "doing" | "done") => {
