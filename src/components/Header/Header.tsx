@@ -1,12 +1,12 @@
 import React from "react";
 import { Input, Button } from "antd";
 
-interface HeaderProps {
+interface IHeaderProps {
   onSearch: (value: string) => void;
   onAddTodo: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSearch, onAddTodo }) => {
+const Header: React.FC<IHeaderProps> = ({ onSearch, onAddTodo }) => {
   return (
     <div
       style={{

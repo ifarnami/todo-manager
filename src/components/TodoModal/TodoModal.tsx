@@ -1,14 +1,13 @@
-// src/components/TodoModal.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { Modal, Input, Form } from "antd";
 
-interface TodoModalProps {
+interface ITodoModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAdd: (title: string) => void;
 }
 
-const TodoModal: React.FC<TodoModalProps> = ({ isOpen, onClose, onAdd }) => {
+const TodoModal: React.FC<ITodoModalProps> = ({ isOpen, onClose, onAdd }) => {
   const [title, setTitle] = useState("");
 
   const handleOk = () => {
