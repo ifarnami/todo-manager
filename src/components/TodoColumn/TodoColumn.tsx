@@ -1,4 +1,4 @@
-import { Col } from "antd";
+import { Col, Empty } from "antd";
 import TodoCard from "../TodoCard/TodoCard";
 import { Todo } from "../../types/todo.model";
 
@@ -18,14 +18,18 @@ const TodoColumn: React.FC<ITodoColumnProps> = ({
   return (
     <Col span={8}>
       <h2>{title}</h2>
-      {todos.map((todo) => (
-        <TodoCard
-          key={todo.id}
-          todo={todo}
-          onChangeStatus={onChangeStatus}
-          onEditTitle={onEditTitle}
-        />
-      ))}
+      {todos.length ? (
+        todos.map((todo) => (
+          <TodoCard
+            key={todo.id}
+            todo={todo}
+            onChangeStatus={onChangeStatus}
+            onEditTitle={onEditTitle}
+          />
+        ))
+      ) : (
+        <Empty description="Edit your tasks using right-click!" />
+      )}
     </Col>
   );
 };
