@@ -1,4 +1,3 @@
-// src/hooks/useTodos.ts
 import { useState, useEffect } from "react";
 import { Todo } from "../types/todo.model";
 import { axiosInstance } from "../config/api";
@@ -30,7 +29,6 @@ export const useTodos = () => {
 
   const addTodo = (title: string) => {
     const newTodo: Todo = {
-      userId: 1,
       id: todos.length + 1,
       title,
       completed: false,
@@ -45,5 +43,13 @@ export const useTodos = () => {
     );
   };
 
-  return { todos, loading, error, addTodo, changeStatus };
+  const editTodoTitle = (id: number, newTitle: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle } : todo
+      )
+    );
+  };
+
+  return { todos, loading, error, addTodo, changeStatus, editTodoTitle };
 };

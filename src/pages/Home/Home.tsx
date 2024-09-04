@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Row, Layout, Spin, Alert } from "antd";
 import Header from "../../components/Header/Header";
 import TodoColumn from "../../components/TodoColumn/TodoColumn";
@@ -7,8 +7,9 @@ import { useTodos } from "../../hooks/useTodos";
 
 const { Content } = Layout;
 
-const App: React.FC = () => {
-  const { todos, loading, error, addTodo, changeStatus } = useTodos();
+const Home: React.FC = () => {
+  const { todos, loading, error, addTodo, changeStatus, editTodoTitle } =
+    useTodos();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] =
     useState<string>(searchTerm);
@@ -55,16 +56,19 @@ const App: React.FC = () => {
             title="To Do"
             todos={filteredTodos.filter((todo) => todo.status === "todo")}
             onChangeStatus={changeStatus}
+            onEditTitle={editTodoTitle}
           />
           <TodoColumn
             title="Doing"
             todos={filteredTodos.filter((todo) => todo.status === "doing")}
             onChangeStatus={changeStatus}
+            onEditTitle={editTodoTitle}
           />
           <TodoColumn
             title="Done"
             todos={filteredTodos.filter((todo) => todo.status === "done")}
             onChangeStatus={changeStatus}
+            onEditTitle={editTodoTitle}
           />
         </Row>
       </Content>
@@ -77,4 +81,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Home;
