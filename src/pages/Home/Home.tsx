@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Row, Layout, Spin, Alert } from "antd";
 import Header from "../../components/Header/Header";
 import TodoColumn from "../../components/TodoColumn/TodoColumn";
 import TodoModal from "../../components/TodoModal/TodoModal";
 import { useTodos } from "../../hooks/useTodos";
+import { themeContext } from "../../context/themeContext";
 
 const { Content } = Layout;
 
 const Home: React.FC = () => {
+  const tContext = useContext(themeContext);
   const { todos, loading, error, addTodo, changeStatus, editTodoTitle } =
     useTodos();
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -49,7 +51,13 @@ const Home: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100vh", padding: "20px" }}>
-      <Header onSearch={handleSearch} onAddTodo={() => setModalVisible(true)} />
+      <Header
+        onSearch={handleSearch}
+        onAddTodo={() => setModalVisible(true)}
+        handleThemeChange={() => {
+          tContext?.changeTheme();
+        }}
+      />
       <Content>
         <Row gutter={16}>
           <TodoColumn

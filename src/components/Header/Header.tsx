@@ -1,18 +1,18 @@
 import React from "react";
-import { Input, Button } from "antd";
+import { Input, Button, Flex, Space, Switch } from "antd";
 
 interface IHeaderProps {
   onSearch: (value: string) => void;
   onAddTodo: () => void;
+  handleThemeChange: () => void;
 }
 
-const Header: React.FC<IHeaderProps> = ({ onSearch, onAddTodo }) => {
+const Header: React.FC<IHeaderProps> = ({ onSearch, onAddTodo, handleThemeChange }) => {
   return (
-    <div
+    <Flex
+      justify="space-between"
       style={{
         marginBottom: "20px",
-        display: "flex",
-        justifyContent: "space-between",
       }}
     >
       <Input
@@ -20,10 +20,17 @@ const Header: React.FC<IHeaderProps> = ({ onSearch, onAddTodo }) => {
         onChange={(e) => onSearch(e.target.value)}
         style={{ width: "300px" }}
       />
-      <Button type="primary" onClick={onAddTodo}>
-        Add Todo
-      </Button>
-    </div>
+      <Space>
+        <Switch
+          checkedChildren="Dark"
+          unCheckedChildren="Light"
+          onChange={handleThemeChange}
+        />
+        <Button type="primary" onClick={onAddTodo}>
+          Add Todo
+        </Button>
+      </Space>
+    </Flex>
   );
 };
 

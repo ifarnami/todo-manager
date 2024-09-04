@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Dropdown, Flex, Input, Space } from "antd";
+import { Card, Dropdown, Flex, Input, Space, theme } from "antd";
 import { EditOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
 import { Todo } from "../../types/todo.model";
 
@@ -16,6 +16,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
+  const { token } = theme.useToken();
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -77,7 +78,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({
             <p style={{ flex: 1 }}>{todo.title}</p>
             <EditOutlined
               onClick={handleEdit}
-              style={{ color: "blue", cursor: "pointer" }}
+              style={{ color: token.colorIcon, cursor: "pointer" }}
             />
           </Space>
         )}

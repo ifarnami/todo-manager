@@ -1,11 +1,14 @@
 import AntdConfigProvider from "./provider/AntdConfigProvider";
 import Home from "./pages/Home/Home";
+import ThemeProvider from "./provider/ThemeProvider";
 
 const App = () => {
   return (
-    <AntdConfigProvider>
-      <Home />
-    </AntdConfigProvider>
+    <ThemeProvider>
+      <AntdConfigProvider>
+        <Home />
+      </AntdConfigProvider>
+    </ThemeProvider>
   );
 };
 
